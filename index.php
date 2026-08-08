@@ -15,6 +15,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif ?>
+        
+        <?php if (!empty($_GET['error'])) : ?>
+            <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                Incorrect Email and Password!!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif ?>
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
@@ -23,7 +30,7 @@
                         <h1 class="h4 text-center mb-1 fw-semibold">Knowledge Nest</h1>
                         <p class="text-center text-muted small mb-4">Sign in to your account</p>
 
-                        <form method="post" action="#">
+                        <form method="post" action="_actions/Users/login.php">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email"
