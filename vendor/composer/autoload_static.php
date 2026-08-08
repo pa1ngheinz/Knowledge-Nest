@@ -25,7 +25,7 @@ class ComposerStaticInit0bf8b892c511ac4023a8fe7e06b0efa5
         ),
         'D' =>
         array (
-            'Databse\\' => 8,
+            'Database\\' => 9,
         ),
     );
 
@@ -36,15 +36,15 @@ class ComposerStaticInit0bf8b892c511ac4023a8fe7e06b0efa5
         ),
         'Helpers\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/Helpers',
+            0 => __DIR__ . '/../..' . '/_classes/Helpers',
         ),
         'Faker\\' =>
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
-        'Databse\\' =>
+        'Database\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/Database',
+            0 => __DIR__ . '/../..' . '/_classes/Database',
         ),
     );
 

@@ -4,7 +4,7 @@ namespace Database;
 
 use Database\DbConnection;
 
-class UserTable
+class UsersTable
 {
     private $db;
 

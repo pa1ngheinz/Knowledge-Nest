@@ -11,8 +11,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Databse\\": "Database/",
-            "Helpers\\": "Helpers/"
+            "Database\\": "_classes/Database/",
+            "Helpers\\": "_classes/Helpers/"
         }
     }
 }
