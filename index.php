@@ -9,6 +9,13 @@
 </head>
 <body class="bg-body-secondary min-vh-100 d-flex align-items-center">
     <div class="container py-4">
+        <?php if (!empty($_GET['success'])) : ?>
+            <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                Register successfull.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif ?>
+
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
                 <div class="card shadow-sm border-0">
@@ -51,5 +58,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>
