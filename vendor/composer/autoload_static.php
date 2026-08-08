@@ -15,9 +15,17 @@ class ComposerStaticInit0bf8b892c511ac4023a8fe7e06b0efa5
         array (
             'Psr\\Container\\' => 14,
         ),
+        'H' =>
+        array (
+            'Helpers\\' => 8,
+        ),
         'F' =>
         array (
             'Faker\\' => 6,
+        ),
+        'D' =>
+        array (
+            'Databse\\' => 8,
         ),
     );
 
@@ -26,9 +34,17 @@ class ComposerStaticInit0bf8b892c511ac4023a8fe7e06b0efa5
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Helpers\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/Helpers',
+        ),
         'Faker\\' =>
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'Databse\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/Database',
         ),
     );
 

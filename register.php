@@ -16,7 +16,7 @@
                         <h1 class="h4 text-center mb-1 fw-semibold">Knowledge Nest</h1>
                         <p class="text-center text-muted small mb-4">Create your account</p>
 
-                        <form method="post" action="">
+                        <form method="post" action="_actions/Users/create.php">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text"
