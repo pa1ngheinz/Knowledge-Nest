@@ -16,7 +16,7 @@ $user = $usersTable->getByEmailAndPassword($email, $password);
 if($email === $user->email and $password === $user->password){
     $_SESSION['user'] = $user;
 
-    HTTP::redirect("library.php");
+    HTTP::redirect("home.php");
 }else{
     HTTP::redirect("index.php", "error=1");
 }

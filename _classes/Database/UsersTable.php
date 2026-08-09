@@ -29,6 +29,23 @@ class UsersTable
         }
     }
 
+    public function insertAdmin($name, $email, $password)
+    {
+        try {
+            $sql = "INSERT INTO users (name,email,password,role_id,created_at) VALUES (:name,:email,:password,:role_id,NOW())";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                "name" => $name,
+                "email" => $email,
+                "password" => $password,
+                "role_id" => 2,
+            ]);
+            return $this->db->lastInsertId();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
     public function getByEmailAndPassword($email, $password)
     {
         try {

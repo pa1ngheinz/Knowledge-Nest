@@ -54,7 +54,7 @@
 
                             <p class="text-center text-muted small mb-0">
                                 already have an account?
-                                <a href="index.php" class="text-decoration-none">sign in</a>
+                                <a href="index.php" class="text-decoration-underline">sign in</a>
                             </p>
                         </form>
                     </div>
