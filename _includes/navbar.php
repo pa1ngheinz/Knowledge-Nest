@@ -30,12 +30,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="authors.php"
-                           class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'authors.php' ? 'active' : 'text-white' ?>">
-                            Authors
-                        </a>
-                    </li>
-                    <li>
                         <a href="borrowings.php"
                            class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php' ? 'active' : 'text-white' ?>">
                             Borrowings

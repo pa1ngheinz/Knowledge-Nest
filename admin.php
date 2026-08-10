@@ -48,6 +48,13 @@
                 </div>
             <?php endif ?>
 
+            <?php if (isset($_GET['successUpdating'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Updated successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
+            
             <div class="card shadow-sm border-0">
                 <div class="card-body p-0">
                     <table class="table table-hover table-bordered mb-0">
