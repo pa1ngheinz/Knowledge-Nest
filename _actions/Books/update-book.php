@@ -13,10 +13,8 @@ $name = $_POST["name"];
 $author = $_POST["author"];
 
 if($_FILES['image']['error'] === UPLOAD_ERR_NO_FILE){
-    echo "without";
     $booksTable->updateWithoutImage($id, $name, $author);
 }else{
-    echo "with";
     $imageName = $_FILES['image']['name'];
     $booksTable->updateWithImage($id, $name, $imageName, $author);
 }
