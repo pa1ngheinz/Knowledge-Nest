@@ -25,7 +25,7 @@
                 <ul class="btn-toggle-nav list-unstyled ps-3 mt-1">
                     <li>
                         <a href="admin.php"
-                           class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'admin.php' ? 'active' : 'text-white' ?>">
+                           class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'admin.php' || 'add-book.php' || 'edit-book.php' ? 'active' : 'text-white' ?>">
                             Manage Books
                         </a>
                     </li>
