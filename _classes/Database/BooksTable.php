@@ -26,4 +26,14 @@ class BooksTable{
             echo $th->getMessage();
         }
     }
+
+    public function getAll(){
+        try {
+            $sql = "SELECT * FROM books";
+            $stmt = $this->db->query($sql);
+            return $result = $stmt->fetchAll();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
 }

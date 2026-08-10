@@ -1,9 +1,19 @@
+<?php
+    include_once("vendor/autoload.php");
+
+    use Database\DbConnection;
+    use Database\BooksTable;
+
+    $booksTable = new BooksTable(new DbConnection());
+    $allBooks = $booksTable->getAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Books – Knowledge Nest Admin</title>
+    <title>Manage Books Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -36,7 +46,7 @@
                     <table class="table table-hover table-bordered mb-0">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">#ID</th>
+                                <th scope="col">No</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Author</th>
@@ -46,42 +56,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $count = 1; ?>
+                            <?php foreach($allBooks as $book): ?>
                             <tr>
-                                <td>1</td>
-                                <td>The Great Gatsby</td>
-                                <td><img src="https://placehold.co/50x65" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
-                                <td>F. Scott Fitzgerald</td>
-                                <td><span class="badge bg-success">Available</span></td>
-                                <td>2026-01-10</td>
+                                <td><?= $count ?></td>
+                                <td><?= $book->name ?></td>
+                                <td><img src="images/<?= $book->image ?>" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
+                                <td><?= $book->author ?></td>
+                                <td><span class="badge bg-success"><?= $book->status ?></span></td>
+                                <td><?= $book->created_at ?></td>
                                 <td class="text-center">
-                                    <a href="edit-book.php?id=1" class="btn btn-sm btn-warning me-1">Edit</a>
-                                    <a href="delete-book.php?id=1" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-warning me-1">Edit</a>
+                                    <a href="delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>To Kill a Mockingbird</td>
-                                <td><img src="https://placehold.co/50x65" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
-                                <td>Harper Lee</td>
-                                <td><span class="badge bg-secondary">Borrowed</span></td>
-                                <td>2026-02-14</td>
-                                <td class="text-center">
-                                    <a href="edit-book.php?id=2" class="btn btn-sm btn-warning me-1">Edit</a>
-                                    <a href="delete-book.php?id=2" class="btn btn-sm btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>1984</td>
-                                <td><img src="https://placehold.co/50x65" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
-                                <td>George Orwell</td>
-                                <td><span class="badge bg-success">Available</span></td>
-                                <td>2026-03-05</td>
-                                <td class="text-center">
-                                    <a href="edit-book.php?id=3" class="btn btn-sm btn-warning me-1">Edit</a>
-                                    <a href="delete-book.php?id=3" class="btn btn-sm btn-danger">Delete</a>
-                                </td>
-                            </tr>
+                            <?php $count++ ?>
+                            <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>

@@ -28,8 +28,6 @@ class DbConnection
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
             ]);
-
-            echo "Connection successful";
             return $this->db;
         } catch (\Throwable $th) {
             echo "Connection failed: " . $th->getMessage();
