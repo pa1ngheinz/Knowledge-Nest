@@ -41,6 +41,13 @@
                 </div>
             <?php endif ?>
 
+            <?php if (isset($_GET['successDeleting'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Deleted successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
+
             <div class="card shadow-sm border-0">
                 <div class="card-body p-0">
                     <table class="table table-hover table-bordered mb-0">
@@ -67,7 +74,7 @@
                                 <td><?= $book->created_at ?></td>
                                 <td class="text-center">
                                     <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-warning me-1">Edit</a>
-                                    <a href="delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="_actions/Books/delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
                                 </td>
                             </tr>
                             <?php $count++ ?>

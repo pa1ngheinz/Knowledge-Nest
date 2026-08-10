@@ -36,4 +36,17 @@ class BooksTable{
             echo $th->getMessage();
         }
     }
+
+    public function delete($id){
+        try {
+           $sql = "DELETE FROM books WHERE id = :id";
+           $stmt = $this->db->prepare($sql);
+           $stmt->execute([
+            "id" => $id
+           ]);
+           return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
 }
