@@ -22,6 +22,8 @@ if($imageError){
 if($imageType === "image/jpeg" or $imageType === "image/png"){
     $booksTable->insert($name,$imageName,$author);
 
+    move_uploaded_file($imageTmpName,"../../images/$imageName");
+
     HTTP::redirect("admin.php", "successAdding=1");
 }else{
     HTTP::redirect("add-book.php", "errorFile=1");
