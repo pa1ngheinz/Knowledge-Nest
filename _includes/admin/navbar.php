@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="borrowings.php"
+                        <a href="#"
                            class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php' ? 'active' : 'text-white' ?>">
                         Borrowings
                         </a>
@@ -59,8 +59,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="borrowings.php"
-                           class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'roles.php' ? 'active' : 'text-white' ?>">
+                        <a href="roles.php"
+                           class="nav-link rounded <?= in_array(basename($_SERVER['PHP_SELF']), ['roles.php', 'add-role.php', 'edit-role.php']) ? 'active' : 'text-white' ?>">
                             Roles
                         </a>
                     </li>
