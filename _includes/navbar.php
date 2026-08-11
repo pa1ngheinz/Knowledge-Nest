@@ -54,7 +54,7 @@
                 <ul class="btn-toggle-nav list-unstyled ps-3 mt-1">
                     <li>
                         <a href="users.php"
-                           class="nav-link rounded <?= in_array(basename($_SERVER['PHP_SELF']), ['users.php', 'add-user.php', 'edit-book.php']) ? 'active' : 'text-white' ?>">
+                           class="nav-link rounded <?= in_array(basename($_SERVER['PHP_SELF']), ['users.php', 'add-user.php', 'edit-user.php']) ? 'active' : 'text-white' ?>">
                             Users
                         </a>
                     </li>

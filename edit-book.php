@@ -21,9 +21,10 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="bg-light">
+    <!-- Header -->
+    <?php include '_includes/header.php'; ?>
 
     <div class="d-flex">
-
         <!-- Sidebar -->
         <?php include '_includes/navbar.php'; ?>
 
@@ -46,7 +47,7 @@
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Books/update-book.php" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?= $result->id ?>">
-                            
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Book Name</label>
                                 <input type="text"

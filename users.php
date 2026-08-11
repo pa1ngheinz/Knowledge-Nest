@@ -37,7 +37,7 @@
         <main class="flex-grow-1 p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h4 fw-semibold mb-0">Manage Users <span class="badge text-bg-primary"><?= count($allUsers) ?></span></h1>
-                <a href="add-book.php" class="btn btn-primary">
+                <a href="add-user.php" class="btn btn-primary">
                     + Add User
                 </a>
             </div>
