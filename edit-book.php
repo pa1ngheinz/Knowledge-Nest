@@ -26,7 +26,7 @@
 
     <div class="d-flex">
         <!-- Sidebar -->
-        <?php include '_includes/navbar.php'; ?>
+        <?php include '_includes/admin/navbar.php'; ?>
 
         <!-- Main -->
         <main class="flex-grow-1 p-4 d-flex align-items-start justify-content-center">

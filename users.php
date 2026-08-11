@@ -31,7 +31,7 @@
     <div class="d-flex">
 
         <!-- Sidebar -->
-        <?php include '_includes/navbar.php'; ?>
+        <?php include '_includes/admin/navbar.php'; ?>
 
         <!-- Main -->
         <main class="flex-grow-1 p-4">
@@ -45,6 +45,13 @@
             <?php if (isset($_GET['successAdding'])) : ?>
                 <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
                     Added successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
+
+            <?php if (isset($_GET['successUpdating'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Updated successfully.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif ?>
@@ -89,7 +96,7 @@
                                             <li><a class="dropdown-item" href="#"><?= $role->name ?></a></li>
                                             <?php endforeach ?>
                                         </ul>
-                                        <a href="" class="btn btn-primary mx-2">Edit</a>
+                                        <a href="edit-user.php?id=<?= $user->id ?>" class="btn btn-primary mx-2">Edit</a>
 
                                         <?php if($_SESSION['user']->id !== $user->id) :?>
                                         <a href="_actions/Users/delete-user.php?id=<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>

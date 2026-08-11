@@ -1,10 +1,10 @@
-<header class="border-bottom px-4 d-flex align-items-center justify-content-between"
-        style="height: 60px; background-color: #f0f2f5;">
+<header class="px-4 d-flex align-items-center justify-content-between"
+        style="height: 60px; background-color: #0d6efd;">
 
-    <span class="fw-bold fs-5 text-dark">📚 Knowledge Nest</span>
+    <span class="fw-bold fs-5 text-white">📚 Knowledge Nest</span>
 
     <div class="d-flex align-items-center gap-3">
-        <span class="text-secondary small fw-semibold">Admin</span>
+        <span class="text-white small fw-semibold">Admin</span>
 
         <div class="rounded-circle d-flex align-items-center justify-content-center text-white"
              style="width: 36px; height: 36px; background-color: #6c757d; font-size: 14px; flex-shrink: 0;">

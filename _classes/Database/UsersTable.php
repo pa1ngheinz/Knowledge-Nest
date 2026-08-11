@@ -46,6 +46,21 @@ class UsersTable
         }
     }
 
+    public function update($id, $name, $email){
+        try {
+           $sql = "UPDATE users SET name = :name, email = :email, updated_at = NOW() WHERE id = :id";
+           $stmt = $this->db->prepare($sql);
+           $stmt->execute([
+            "name" => $name,
+            "email" => $email,
+            "id" => $id
+           ]);
+           return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
     public function getByEmailAndPassword($email, $password)
     {
         try {
@@ -54,6 +69,19 @@ class UsersTable
             $stmt->execute([
                 "email" => $email,
                 "password" => $password
+            ]);
+            return $result = $stmt->fetch();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    public function getOne($id){
+        try {
+            $sql = "SELECT * FROM users WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                "id" => $id
             ]);
             return $result = $stmt->fetch();
         } catch (\Throwable $th) {
