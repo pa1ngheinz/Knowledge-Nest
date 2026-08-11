@@ -49,7 +49,7 @@ class UsersTable
     public function getByEmailAndPassword($email, $password)
     {
         try {
-            $sql = "SELECT * FROM users WHERE email = :email AND password = :password";
+            $sql = "SELECT users.*, roles.name as role FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE email = :email AND password = :password";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "email" => $email,

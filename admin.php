@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("vendor/autoload.php");
 
     use Database\DbConnection;
@@ -18,6 +19,9 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="bg-light">
+
+    <!-- Header -->
+    <?php include '_includes/header.php'; ?>
 
     <div class="d-flex">
 
