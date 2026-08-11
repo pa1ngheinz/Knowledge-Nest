@@ -3,6 +3,8 @@
 
     include_once("vendor/autoload.php");
 
+    use Database\DbConnection;
+    use Database\RolesTable;
     use Helpers\Auth;
     use Helpers\HTTP;
 
@@ -11,6 +13,10 @@
     if($currentUser->role !== "Admin"){
         HTTP::redirect("index.php", "unauthorized=1");
     }
+
+    $id = $_GET['id'];
+    $rolesTable = new RolesTable(new DbConnection());
+    $result = $rolesTable->getOne($id);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Role Page</title>
+    <title>Edit Role Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -34,19 +40,22 @@
         <main class="flex-grow-1 p-4 d-flex align-items-start justify-content-center">
             <div class="w-100" style="max-width: 480px;">
                 <div class="mb-4">
-                    <h1 class="h4 fw-semibold mb-0">Add Role</h1>
-                    <p class="text-muted small mb-0">Fill in the details to add a new role.</p>
+                    <h1 class="h4 fw-semibold mb-0">Edit Role</h1>
+                    <p class="text-muted small mb-0">Fill in the details to edit role.</p>
                 </div>
 
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
-                        <form method="post" action="_actions/Users/create-role.php">
+                        <form method="post" action="_actions/Users/update-role.php">
+                            <input type="hidden" name="id" value="<?= $result->id ?>">
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text"
                                        class="form-control"
                                        id="name"
                                        name="name"
+                                       value="<?= $result->name ?>"
                                        placeholder="Enter role name"
                                        autocomplete="name"
                                        required>
@@ -58,12 +67,13 @@
                                        class="form-control"
                                        id="value"
                                        name="value"
+                                       value="<?= $result->value ?>"
                                        placeholder="Enter a number"
                                        autocomplete="new-value"
                                        required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Create</button>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Update</button>
                             <a href="roles.php" class="btn btn-outline-secondary w-100">Cancel</a>
                         </form>
                     </div>
