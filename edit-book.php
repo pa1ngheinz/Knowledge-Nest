@@ -6,8 +6,13 @@
     use Database\DbConnection;
     use Database\BooksTable;
     use Helpers\Auth;
+    use Helpers\HTTP;
 
-    Auth::check();
+    $currentUser =Auth::check();
+
+    if($currentUser->role !== "Admin"){
+        HTTP::redirect("index.php", "unauthorized=1");
+    }
 
     $booksTable = new BooksTable(new DbConnection());
 

@@ -4,8 +4,13 @@
     include_once("vendor/autoload.php");
 
     use Helpers\Auth;
+    use Helpers\HTTP;
 
-    Auth::check();
+    $currentUser =Auth::check();
+
+    if($currentUser->role !== "Admin"){
+        HTTP::redirect("index.php", "unauthorized=1");
+    }
 ?>
 
 <!DOCTYPE html>

@@ -7,9 +7,14 @@
     use Database\UsersTable;
     use Database\RolesTable;
     use Helpers\Auth;
+    use Helpers\HTTP;
 
-    Auth::check();
-    
+    $currentUser =Auth::check();
+
+    if($currentUser->role !== "Admin"){
+        HTTP::redirect("index.php", "unauthorized=1");
+    }
+
     $usersTable = new UsersTable(new DbConnection());
     $rolesTable = new RolesTable(new DbConnection());
 
