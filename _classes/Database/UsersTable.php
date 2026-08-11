@@ -60,4 +60,14 @@ class UsersTable
             echo $th->getMessage();
         }
     }
+
+    public function getAll(){
+        try {
+            $sql = "SELECT users.*, roles.name as role FROM users LEFT JOIN roles ON users.role_id = roles.id";
+            $stmt = $this->db->query($sql);
+            return $result = $stmt->fetchAll();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
 }
