@@ -1,9 +1,13 @@
 <?php
     session_start();
+
     include_once("vendor/autoload.php");
 
     use Database\DbConnection;
     use Database\BooksTable;
+    use Helpers\Auth;
+
+    Auth::check();
 
     $booksTable = new BooksTable(new DbConnection());
     $allBooks = $booksTable->getAll();

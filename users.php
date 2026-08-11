@@ -6,6 +6,9 @@
     use Database\DbConnection;
     use Database\UsersTable;
     use Database\RolesTable;
+    use Helpers\Auth;
+
+    Auth::check();
     
     $usersTable = new UsersTable(new DbConnection());
     $rolesTable = new RolesTable(new DbConnection());

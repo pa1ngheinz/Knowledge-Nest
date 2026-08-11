@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    include_once("vendor/autoload.php");
+
+    use Helpers\Auth;
+
+    Auth::check();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

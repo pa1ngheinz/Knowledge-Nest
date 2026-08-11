@@ -1,15 +1,19 @@
 <?php
+    session_start();
 
-include_once("vendor/autoload.php");
+    include_once("vendor/autoload.php");
 
-use Database\DbConnection;
-use Database\UsersTable;
+    use Database\DbConnection;
+    use Database\UsersTable;
+    use Helpers\Auth;
 
-$usersTable = new UsersTable(new DbConnection());
+    Auth::check();
 
-$id = $_GET['id'];
+    $usersTable = new UsersTable(new DbConnection());
 
-$user = $usersTable->getOne($id);
+    $id = $_GET['id'];
+
+    $user = $usersTable->getOne($id);
 ?>
 
 <!DOCTYPE html>
