@@ -94,7 +94,7 @@
                                 <td class="d-flex justify-content-center">
                                         <a href="edit-user.php?id=<?= $role->id ?>" class="btn btn-primary mx-2">Edit</a>
 
-                                        <a href="_actions/Users/delete-user.php?id=<?= $role->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
+                                        <a href="_actions/Users/delete-role.php?id=<?= $role->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
                                     </div>
                                 </td>
                             </tr>
