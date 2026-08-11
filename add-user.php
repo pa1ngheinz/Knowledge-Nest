@@ -32,7 +32,7 @@
 
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
-                        <form method="post" action="_actions/Users/create.php">
+                        <form method="post" action="_actions/Users/create-user.php">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text"
