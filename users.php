@@ -3,10 +3,13 @@
 
     use Database\DbConnection;
     use Database\UsersTable;
+    use Database\RolesTable;
     
     $usersTable = new UsersTable(new DbConnection());
+    $rolesTable = new RolesTable(new DbConnection());
 
     $allUsers = $usersTable->getAll();
+    $allRoles = $rolesTable->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -65,9 +68,9 @@
                                             Dropdown button
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            <?php foreach($allRoles as $role) :?>
+                                            <li><a class="dropdown-item" href="#"><?= $role->name ?></a></li>
+                                            <?php endforeach ?>
                                         </ul>
                                     </div>
                                 </td>
