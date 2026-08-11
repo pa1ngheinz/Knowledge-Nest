@@ -41,6 +41,13 @@
                     + Add User
                 </a>
             </div>
+
+            <?php if (isset($_GET['successDeleting'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Deleted successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
             
             <div class="card shadow-sm border-0">
                 <div class="card-body p-0">
@@ -78,7 +85,7 @@
                                         <a href="" class="btn btn-primary mx-2">Edit</a>
 
                                         <?php if($_SESSION['user']->id !== $user->id) :?>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="_actions/Users/delete-user.php?id=<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
                                         <?php else : ?>
                                         <div class="text-success text-decoration-underline d-inline-block fs-5">Current</div>
                                         <?php endif ?>

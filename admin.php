@@ -84,7 +84,7 @@
                                 <td><span class="badge bg-success"><?= $book->status ?></span></td>
                                 <td><?= $book->created_at ?></td>
                                 <td class="text-center">
-                                    <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-warning me-1">Edit</a>
+                                    <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-primary me-1">Edit</a>
                                     <a href="_actions/Books/delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
                                 </td>
                             </tr>
