@@ -36,7 +36,7 @@
         <!-- Main -->
         <main class="flex-grow-1 p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h4 fw-semibold mb-0">Manage Users</h1>
+                <h1 class="h4 fw-semibold mb-0">Manage Users <span class="badge text-bg-primary"><?= count($allUsers) ?></span></h1>
                 <a href="add-book.php" class="btn btn-primary">
                     + Add User
                 </a>
@@ -67,16 +67,21 @@
                                 <td><?= $user->created_at ?></td>
                                 <td class="d-flex justify-content-center">
                                     <div class="dropdown">
-                                        <a href="" class="btn btn-warning">edit</a>
-                                        <a href="" class="btn btn-danger">delete</a>
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropdown button
+                                        <button class="btn btn-secondary dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Change role
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach($allRoles as $role) :?>
                                             <li><a class="dropdown-item" href="#"><?= $role->name ?></a></li>
                                             <?php endforeach ?>
                                         </ul>
+                                        <a href="" class="btn btn-primary mx-2">Edit</a>
+
+                                        <?php if($_SESSION['user']->id !== $user->id) :?>
+                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <?php else : ?>
+                                        <div class="text-success text-decoration-underline d-inline-block fs-5">Current</div>
+                                        <?php endif ?>
                                     </div>
                                 </td>
                             </tr>
