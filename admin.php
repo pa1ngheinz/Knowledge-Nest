@@ -32,7 +32,7 @@
         <main class="flex-grow-1 p-4">
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h4 fw-semibold mb-0">Manage Books</h1>
+                <h1 class="h4 fw-semibold mb-0">Manage Books <span class="badge text-bg-primary"><?= count($allBooks) ?></h1>
                 <a href="add-book.php" class="btn btn-primary">
                     + Add Book
                 </a>
