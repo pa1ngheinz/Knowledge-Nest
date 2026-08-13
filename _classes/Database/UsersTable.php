@@ -76,6 +76,20 @@ class UsersTable
         }
     }
 
+    public function updatePhoto($id, $image){
+        try {
+            $sql = "UPDATE users SET image = :image WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                "image" => $image,
+                "id" => $id
+            ]);
+            return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
     public function getByEmailAndPassword($email, $password)
     {
         try {

@@ -6,13 +6,17 @@
     <div class="d-flex align-items-center gap-3">
         <span class="text-white small fw-semibold"><?= $_SESSION['user']->name ?></span>
 
-        <div class="rounded-circle d-flex align-items-center justify-content-center text-white"
-             style="width: 36px; height: 36px; background-color: #6c757d; font-size: 14px; flex-shrink: 0; cursor: pointer;"
-             data-bs-toggle="modal"
-             data-bs-target="#userProfileModal"
-             role="button">
-            <i class="fa-solid fa-user"></i>
-        </div>
+        <button type="button" class="p-0 border-0 bg-transparent rounded-circle"
+                style="width: 36px; height: 36px; flex-shrink: 0; cursor: pointer; overflow: hidden;"
+                data-bs-toggle="modal"
+                data-bs-target="#userProfileModal"
+                aria-label="Open profile">
+            <?php if(isset($_SESSION['user']->image)) :?>
+            <img src="images/<?= $_SESSION['user']->image ?>" alt="Defalut" style="width: 100%; height: 100%; object-fit: cover;">
+            <?php else :?>
+            <img src="images/default.jpg" alt="Defalut" style="width: 100%; height: 100%; object-fit: cover;">
+            <?php endif ?>
+        </button>
     </div>
 
 </header>
@@ -22,24 +26,43 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="userProfileModalLabel">User Information</h5>
+                <h5 class="modal-title" id="userProfileModalLabel">My Profile</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">Username</label>
-                    <input type="text" id="username" class="form-control" value="<?= $_SESSION['user']->name ?>" readonly>
+
+            <form action="_actions/Users/upload.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $_SESSION['user']->id ?>">
+
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <?php if(isset($_SESSION['user']->image)) :?>
+                        <img src="images/<?= $_SESSION['user']->image ?>" alt="Default profile photo" class="rounded-circle border" style="width: 112px; height: 112px; object-fit: cover;">
+                        <?php else :?>
+                        <img src="images/default.jpg" alt="Default profile photo" class="rounded-circle border" style="width: 112px; height: 112px; object-fit: cover;">
+                        <?php endif ?>
+                    </div>
+                    <div class="mb-3">
+                        <label for="profilePhoto" class="form-label fw-semibold">Profile photo</label>
+                        <input class="form-control" type="file" name="image" id="profilePhoto" accept="image/*">
+                        <div class="form-text">Choose a new photo to update your profile.</div>
+                    </div>
+                    <div class="border rounded-3 p-3 bg-light">
+                        <div class="mb-2">
+                            <span class="small text-muted d-block">Name</span>
+                            <span class="fw-semibold"><?= $_SESSION['user']->name ?></span>
+                        </div>
+                        <div>
+                            <span class="small text-muted d-block">Email</span>
+                            <span class="fw-semibold"><?= $_SESSION['user']->email ?></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label fw-semibold">Email</label>
-                    <input type="email" id="email" class="form-control" value="<?= $_SESSION['user']->email?>" readonly>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <a href="_actions/Users/logout.php" class="btn btn-danger" onclick="return confirm('Are you sure do you want to logout?')">Logout</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="_actions/Users/logout.php" class="btn btn-danger">Logout</a>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-
