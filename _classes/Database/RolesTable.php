@@ -26,7 +26,7 @@ class RolesTable{
 
     public function update($id, $name, $value){
         try {
-            $sql = "UPDATE roles SET name = :name, value = :value WHERE id = :id";
+            $sql = "UPDATE roles SET name = :name, value = :value, updated_at = NOW() WHERE id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "name" => $name,
