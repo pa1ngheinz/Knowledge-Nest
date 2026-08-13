@@ -79,6 +79,7 @@
                                 <th scope="col">Author</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Created At</th>
+                                <th scope="col">Updated At</th>
                                 <th scope="col" class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -92,6 +93,7 @@
                                 <td><?= $book->author ?></td>
                                 <td><span class="badge bg-success"><?= $book->status ?></span></td>
                                 <td><?= $book->created_at ?></td>
+                                <td><?= $book->updated_at ?></td>
                                 <td class="text-center">
                                     <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-primary me-1">Edit</a>
                                     <a href="_actions/Books/delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>

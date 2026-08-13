@@ -29,7 +29,7 @@ class BooksTable{
 
     public function updateWithImage($id, $name, $image, $author){
         try {
-            $sql = "UPDATE books SET name = :name, image = :image, author = :author WHERE id = :id";
+            $sql = "UPDATE books SET name = :name, image = :image, author = :author, updated_at = NOW() WHERE id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "name" => $name,
@@ -45,7 +45,7 @@ class BooksTable{
 
     public function updateWithoutImage($id, $name, $author){
         try {
-            $sql = "UPDATE books SET name = :name, author = :author WHERE id = :id";
+            $sql = "UPDATE books SET name = :name, author = :author, updated_at = NOW() WHERE id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "name" => $name,
