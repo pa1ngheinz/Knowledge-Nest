@@ -37,6 +37,13 @@
             </div>
         <?php endif ?>
 
+        <?php if (!empty($_GET['unauthenticated'])) : ?>
+            <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                You need to login first!!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif ?>
+
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
                 <div class="card shadow-sm border-0">

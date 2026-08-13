@@ -61,6 +61,20 @@ class UsersTable
         }
     }
 
+    public function updateRole($id, $value){
+        try {
+            $sql = "UPDATE users SET role_id = :role_id WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                "role_id" => $value,
+                "id" => $id
+            ]);
+            return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
     public function getByEmailAndPassword($email, $password)
     {
         try {
@@ -70,7 +84,7 @@ class UsersTable
                 "email" => $email,
                 "password" => $password
             ]);
-            return $result = $stmt->fetch();
+            return $stmt->fetch();
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }
@@ -78,12 +92,12 @@ class UsersTable
 
     public function getOne($id){
         try {
-            $sql = "SELECT * FROM users WHERE id = :id";
+            $sql = "SELECT users.*, roles.name as role FROM users LEFT JOIN roles ON users.role_id = roles.value WHERE users.id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "id" => $id
             ]);
-            return $result = $stmt->fetch();
+            return $stmt->fetch();
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }
@@ -93,7 +107,7 @@ class UsersTable
         try {
             $sql = "SELECT users.*, roles.name as role FROM users LEFT JOIN roles ON users.role_id = roles.value";
             $stmt = $this->db->query($sql);
-            return $result = $stmt->fetchAll();
+            return $stmt->fetchAll();
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }

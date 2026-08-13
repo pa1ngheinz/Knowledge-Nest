@@ -16,7 +16,7 @@
 
     $usersTable = new UsersTable(new DbConnection());
 
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];
 
     $user = $usersTable->getOne($id);
 ?>

@@ -11,7 +11,9 @@
 
     $currentUser =Auth::check();
 
-    if($currentUser->role !== "Admin"){
+    var_dump($currentUser); 
+
+    if($currentUser->role === "User"){
         HTTP::redirect("index.php", "unauthorized=1");
     }
 
@@ -70,6 +72,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif ?>
+
+            <?php if (isset($_GET['successRoleChange'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Role was successfully changed.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
+
+            <?php if (isset($_GET['risk'])) : ?>
+                <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+                    You won't be able to access admin page if you change!!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
             
             <div class="card shadow-sm border-0">
                 <div class="card-body p-0">
@@ -101,9 +117,10 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach($allRoles as $role) :?>
-                                            <li><a class="dropdown-item" href="#"><?= $role->name ?></a></li>
+                                            <li><a class="dropdown-item" href="_actions/Users/change-role.php?id=<?= $user->id ?>&value=<?= $role->value ?>"><?= $role->name ?></a></li>
                                             <?php endforeach ?>
                                         </ul>
+
                                         <a href="edit-user.php?id=<?= $user->id ?>" class="btn btn-primary mx-2">Edit</a>
 
                                         <?php if($_SESSION['user']->id !== $user->id) :?>

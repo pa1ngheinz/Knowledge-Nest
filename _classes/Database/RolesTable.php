@@ -69,7 +69,7 @@ class RolesTable{
         try {
             $sql = "SELECT * FROM roles";
             $stmt = $this->db->query($sql);
-            return $result = $stmt->fetchAll();
+            return $stmt->fetchAll();
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }
