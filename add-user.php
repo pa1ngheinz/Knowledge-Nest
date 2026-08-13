@@ -5,12 +5,18 @@
 
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Database\DbConnection;
+    use Database\RolesTable;
+
+    $rolesTable = new RolesTable(new DbConnection());
 
     $currentUser =Auth::check();
 
     if($currentUser->role === "User"){
         HTTP::redirect("index.php", "unauthorized=1");
     }
+
+    $allRoles = $rolesTable->getAll();
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +85,15 @@
                                        placeholder="Enter your password"
                                        autocomplete="new-password"
                                        required>
+                            </div>
+
+                            <div class="mb-4">
+                                <select class="form-select" name="role" aria-label="Default select example">
+                                    <option selected>Select role</option>
+                                    <?php foreach($allRoles as $role) :?>
+                                    <option value="<?= $role->value ?>"><?= $role->name ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100 mb-3">Create</button>

@@ -95,6 +95,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Created At</th>
+                                <th scope="col">Updated At</th>
                                 <th scope="col" class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -108,6 +109,7 @@
                                 <td><?= $user->email ?></td>
                                 <td><?= $user->role ?></td>
                                 <td><?= $user->created_at ?></td>
+                                <td><?= $user->updated_at ?></td>
                                 <td class="d-flex justify-content-center">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">

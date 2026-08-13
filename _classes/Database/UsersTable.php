@@ -13,15 +13,16 @@ class UsersTable
         $this->db = $db->connect();
     }
 
-    public function insert($name, $email, $password)
+    public function insert($name, $email, $password, $role)
     {
         try {
-            $sql = "INSERT INTO users (name,email,password,created_at) VALUES (:name,:email,:password,NOW())";
+            $sql = "INSERT INTO users (name,email,password,role_id,created_at) VALUES (:name,:email,:password,:role_id,NOW())";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "name" => $name,
                 "email" => $email,
                 "password" => $password,
+                "role_id" => $role
             ]);
             return $this->db->lastInsertId();
         } catch (\Throwable $th) {
@@ -63,7 +64,7 @@ class UsersTable
 
     public function updateRole($id, $value){
         try {
-            $sql = "UPDATE users SET role_id = :role_id WHERE id = :id";
+            $sql = "UPDATE users SET role_id = :role_id, updated_at = NOW() WHERE id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->execute([
                 "role_id" => $value,
