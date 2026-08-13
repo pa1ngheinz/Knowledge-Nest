@@ -8,7 +8,7 @@
 
     $currentUser =Auth::check();
 
-    if($currentUser->role !== "Admin"){
+    if($currentUser->role === "User"){
         HTTP::redirect("index.php", "unauthorized=1");
     }
 ?>

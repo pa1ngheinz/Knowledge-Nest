@@ -11,8 +11,6 @@
 
     $currentUser =Auth::check();
 
-    var_dump($currentUser); 
-
     if($currentUser->role === "User"){
         HTTP::redirect("index.php", "unauthorized=1");
     }
