@@ -6,6 +6,7 @@
     use Helpers\Auth;
     use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
     use Database\DbConnection;
     use Database\RolesTable;
 
@@ -55,6 +56,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Users/create-user.php">
+                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text"

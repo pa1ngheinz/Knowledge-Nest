@@ -8,6 +8,7 @@
     use Helpers\Auth;
     use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -97,7 +98,11 @@
                                 <td><?= XSS::prevent($book->updated_at) ?></td>
                                 <td class="text-center">
                                     <a href="edit-book.php?id=<?= XSS::prevent($book->id) ?>" class="btn btn-sm btn-primary me-1">Edit</a>
-                                    <a href="_actions/Books/delete-book.php?id=<?= XSS::prevent($book->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
+                                    <form method="post" action="_actions/Books/delete-book.php" class="d-inline">
+                                        <input type="hidden" name="id" value="<?= XSS::prevent($book->id) ?>">
+                                        <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php $count++ ?>

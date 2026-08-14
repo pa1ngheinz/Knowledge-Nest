@@ -8,6 +8,7 @@
     use Helpers\Auth;
     use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -95,7 +96,11 @@
                                 <td class="d-flex justify-content-center">
                                         <a href="edit-role.php?id=<?= XSS::prevent($role->id) ?>" class="btn btn-primary mx-2">Edit</a>
 
-                                        <a href="_actions/Users/delete-role.php?id=<?= XSS::prevent($role->id) ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
+                                        <form method="post" action="_actions/Users/delete-role.php" class="d-inline">
+                                            <input type="hidden" name="id" value="<?= XSS::prevent($role->id) ?>">
+                                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

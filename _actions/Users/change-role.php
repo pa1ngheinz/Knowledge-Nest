@@ -6,13 +6,16 @@
     use Database\DbConnection;
     use Database\UsersTable;
     use Helpers\HTTP;
+    use Helpers\CSRF;
+
+    CSRF::verify_csrf($_POST['csrf_token'] ?? '');
 
     $currentUser = $_SESSION['user'];
 
     $usersTable = new UsersTable(new DbConnection());
 
-    $id = (int)$_GET['id'];
-    $value = (int)$_GET['value'];
+    $id = (int)$_POST['id'];
+    $value = (int)$_POST['value'];
 
     if($id === $currentUser->id && $value === 1){
         HTTP::redirect("users.php", "risk=1");

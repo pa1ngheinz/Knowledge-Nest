@@ -1,4 +1,7 @@
-<?php use Helpers\XSS; ?>
+<?php
+    use Helpers\XSS;
+    use Helpers\CSRF;
+?>
 
 <header class="px-4 d-flex align-items-center justify-content-between"
         style="height: 60px; background-color: #0d6efd;">
@@ -33,6 +36,7 @@
             </div>
 
             <form action="_actions/Users/upload.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                 <input type="hidden" name="id" value="<?= XSS::prevent($_SESSION['user']->id) ?>">
 
                 <div class="modal-body">
@@ -61,7 +65,7 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
-                    <a href="_actions/Users/logout.php" class="btn btn-danger" onclick="return confirm('Are you sure do you want to logout?')">Logout</a>
+                    <button type="submit" class="btn btn-danger" formaction="_actions/Users/logout.php" formmethod="post" onclick="return confirm('Are you sure do you want to logout?')">Logout</button>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>

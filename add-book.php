@@ -5,6 +5,7 @@
 
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -48,6 +49,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Books/create-book.php" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Book Name</label>
                                 <input type="text"

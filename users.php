@@ -9,6 +9,7 @@
     use Helpers\Auth;
     use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -118,14 +119,25 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach($allRoles as $role) :?>
-                                            <li><a class="dropdown-item" href="_actions/Users/change-role.php?id=<?= XSS::prevent($user->id) ?>&value=<?= XSS::prevent($role->value) ?>"><?= XSS::prevent($role->name) ?></a></li>
+                                            <li>
+                                                <form method="post" action="_actions/Users/change-role.php">
+                                                    <input type="hidden" name="id" value="<?= XSS::prevent($user->id) ?>">
+                                                    <input type="hidden" name="value" value="<?= XSS::prevent($role->value) ?>">
+                                                    <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
+                                                    <button type="submit" class="dropdown-item"><?= XSS::prevent($role->name) ?></button>
+                                                </form>
+                                            </li>
                                             <?php endforeach ?>
                                         </ul>
 
                                         <a href="edit-user.php?id=<?= XSS::prevent($user->id) ?>" class="btn btn-primary mx-2">Edit</a>
 
                                         <?php if($_SESSION['user']->id !== $user->id) :?>
-                                        <a href="_actions/Users/delete-user.php?id=<?= XSS::prevent($user->id) ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
+                                        <form method="post" action="_actions/Users/delete-user.php" class="d-inline">
+                                            <input type="hidden" name="id" value="<?= XSS::prevent($user->id) ?>">
+                                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</button>
+                                        </form>
                                         <?php else : ?>
                                         <div class="text-success text-decoration-underline d-inline-block fs-5">Current</div>
                                         <?php endif ?>

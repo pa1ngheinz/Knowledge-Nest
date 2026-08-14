@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    include_once("vendor/autoload.php");
+
+    use Helpers\CSRF;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +25,7 @@
                         <p class="text-center text-muted small mb-4">Create admin account</p>
 
                         <form method="post" action="_actions/Users/create-admin.php">
+                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text"

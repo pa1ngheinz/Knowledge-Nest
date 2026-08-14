@@ -8,6 +8,7 @@
     use Helpers\Auth;
     use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -57,6 +58,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Books/update-book.php" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                             <input type="hidden" name="id" value="<?= XSS::prevent($result->id) ?>">
 
                             <div class="mb-3">
