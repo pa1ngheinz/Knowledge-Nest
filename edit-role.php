@@ -7,6 +7,7 @@
     use Database\RolesTable;
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
 
     $currentUser =Auth::check();
 
@@ -47,7 +48,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Users/update-role.php">
-                            <input type="hidden" name="id" value="<?= $result->id ?>">
+                            <input type="hidden" name="id" value="<?= XSS::prevent($result->id) ?>">
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -55,7 +56,7 @@
                                        class="form-control"
                                        id="name"
                                        name="name"
-                                       value="<?= $result->name ?>"
+                                       value="<?= XSS::prevent($result->name) ?>"
                                        placeholder="Enter role name"
                                        autocomplete="name"
                                        required>
@@ -67,7 +68,7 @@
                                        class="form-control"
                                        id="value"
                                        name="value"
-                                       value="<?= $result->value ?>"
+                                       value="<?= XSS::prevent($result->value) ?>"
                                        placeholder="Enter a number"
                                        autocomplete="new-value"
                                        required>

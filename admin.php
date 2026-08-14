@@ -7,6 +7,7 @@
     use Database\BooksTable;
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
 
     $currentUser =Auth::check();
 
@@ -88,15 +89,15 @@
                             <?php foreach($allBooks as $book): ?>
                             <tr>
                                 <td><?= $count ?></td>
-                                <td><?= $book->name ?></td>
-                                <td><img src="images/<?= $book->image ?>" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
-                                <td><?= $book->author ?></td>
-                                <td><span class="badge bg-success"><?= $book->status ?></span></td>
-                                <td><?= $book->created_at ?></td>
-                                <td><?= $book->updated_at ?></td>
+                                <td><?= XSS::prevent($book->name) ?></td>
+                                <td><img src="images/<?= XSS::prevent($book->image) ?>" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
+                                <td><?= XSS::prevent($book->author) ?></td>
+                                <td><span class="badge bg-success"><?= XSS::prevent($book->status) ?></span></td>
+                                <td><?= XSS::prevent($book->created_at) ?></td>
+                                <td><?= XSS::prevent($book->updated_at) ?></td>
                                 <td class="text-center">
-                                    <a href="edit-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-primary me-1">Edit</a>
-                                    <a href="_actions/Books/delete-book.php?id=<?= $book->id ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
+                                    <a href="edit-book.php?id=<?= XSS::prevent($book->id) ?>" class="btn btn-sm btn-primary me-1">Edit</a>
+                                    <a href="_actions/Books/delete-book.php?id=<?= XSS::prevent($book->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</a>
                                 </td>
                             </tr>
                             <?php $count++ ?>

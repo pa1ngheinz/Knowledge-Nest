@@ -5,6 +5,7 @@
 
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
     use Database\DbConnection;
     use Database\RolesTable;
 
@@ -91,7 +92,7 @@
                                 <select class="form-select" name="role" aria-label="Default select example">
                                     <option selected>Select role</option>
                                     <?php foreach($allRoles as $role) :?>
-                                    <option value="<?= $role->value ?>"><?= $role->name ?></option>
+                                    <option value="<?= XSS::prevent($role->value) ?>"><?= XSS::prevent($role->name) ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>

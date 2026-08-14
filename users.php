@@ -8,6 +8,7 @@
     use Database\RolesTable;
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
 
     $currentUser =Auth::check();
 
@@ -105,11 +106,11 @@
                             <?php foreach($allUsers as $user):?>
                             <tr>
                                 <td><?= $count ?></td>
-                                <td><?= $user->name ?></td>
-                                <td><?= $user->email ?></td>
-                                <td><?= $user->role ?></td>
-                                <td><?= $user->created_at ?></td>
-                                <td><?= $user->updated_at ?></td>
+                                <td><?= XSS::prevent($user->name) ?></td>
+                                <td><?= XSS::prevent($user->email) ?></td>
+                                <td><?= XSS::prevent($user->role) ?></td>
+                                <td><?= XSS::prevent($user->created_at) ?></td>
+                                <td><?= XSS::prevent($user->updated_at) ?></td>
                                 <td class="d-flex justify-content-center">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -117,14 +118,14 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <?php foreach($allRoles as $role) :?>
-                                            <li><a class="dropdown-item" href="_actions/Users/change-role.php?id=<?= $user->id ?>&value=<?= $role->value ?>"><?= $role->name ?></a></li>
+                                            <li><a class="dropdown-item" href="_actions/Users/change-role.php?id=<?= XSS::prevent($user->id) ?>&value=<?= XSS::prevent($role->value) ?>"><?= XSS::prevent($role->name) ?></a></li>
                                             <?php endforeach ?>
                                         </ul>
 
-                                        <a href="edit-user.php?id=<?= $user->id ?>" class="btn btn-primary mx-2">Edit</a>
+                                        <a href="edit-user.php?id=<?= XSS::prevent($user->id) ?>" class="btn btn-primary mx-2">Edit</a>
 
                                         <?php if($_SESSION['user']->id !== $user->id) :?>
-                                        <a href="_actions/Users/delete-user.php?id=<?= $user->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
+                                        <a href="_actions/Users/delete-user.php?id=<?= XSS::prevent($user->id) ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
                                         <?php else : ?>
                                         <div class="text-success text-decoration-underline d-inline-block fs-5">Current</div>
                                         <?php endif ?>

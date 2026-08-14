@@ -7,6 +7,7 @@
     use Database\UsersTable;
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
 
     $currentUser =Auth::check();
 
@@ -49,7 +50,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4 p-md-5">
                         <form method="post" action="_actions/Users/update-user.php">
-                            <input type="hidden" name="id" value="<?= $user->id ?>">
+                            <input type="hidden" name="id" value="<?= XSS::prevent($user->id) ?>">
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -57,7 +58,7 @@
                                        class="form-control"
                                        id="name"
                                        name="name"
-                                       value="<?= $user->name ?>"
+                                       value="<?= XSS::prevent($user->name) ?>"
                                        placeholder="Enter your name"
                                        autocomplete="name"
                                        required>
@@ -69,7 +70,7 @@
                                        class="form-control"
                                        id="email"
                                        name="email"
-                                       value="<?= $user->email ?>"
+                                       value="<?= XSS::prevent($user->email) ?>"
                                        placeholder="Enter your email"
                                        autocomplete="email"
                                        required>

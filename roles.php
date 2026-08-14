@@ -7,6 +7,7 @@
     use Database\RolesTable;
     use Helpers\Auth;
     use Helpers\HTTP;
+    use Helpers\XSS;
 
     $currentUser =Auth::check();
 
@@ -87,14 +88,14 @@
                             <?php foreach($allRoles as $role):?>
                             <tr>
                                 <td><?= $count ?></td>
-                                <td><?= $role->name ?></td>
-                                <td><?= $role->value ?></td>
-                                <td><?= $role->created_at ?></td>
-                                <td><?= $role->updated_at ?></td>
+                                <td><?= XSS::prevent($role->name) ?></td>
+                                <td><?= XSS::prevent($role->value) ?></td>
+                                <td><?= XSS::prevent($role->created_at) ?></td>
+                                <td><?= XSS::prevent($role->updated_at) ?></td>
                                 <td class="d-flex justify-content-center">
-                                        <a href="edit-role.php?id=<?= $role->id ?>" class="btn btn-primary mx-2">Edit</a>
+                                        <a href="edit-role.php?id=<?= XSS::prevent($role->id) ?>" class="btn btn-primary mx-2">Edit</a>
 
-                                        <a href="_actions/Users/delete-role.php?id=<?= $role->id ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
+                                        <a href="_actions/Users/delete-role.php?id=<?= XSS::prevent($role->id) ?>" class="btn btn-danger" onclick="return confirm('Are you sure do you want to delete?')">Delete</a>
                                     </div>
                                 </td>
                             </tr>

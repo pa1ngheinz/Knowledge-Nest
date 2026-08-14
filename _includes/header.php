@@ -1,10 +1,12 @@
+<?php use Helpers\XSS; ?>
+
 <header class="px-4 d-flex align-items-center justify-content-between"
         style="height: 60px; background-color: #0d6efd;">
 
     <span class="fw-bold fs-5 text-white">📚 Knowledge Nest</span>
 
     <div class="d-flex align-items-center gap-3">
-        <span class="text-white small fw-semibold"><?= $_SESSION['user']->name ?></span>
+        <span class="text-white small fw-semibold"><?= XSS::prevent($_SESSION['user']->name) ?></span>
 
         <button type="button" class="p-0 border-0 bg-transparent rounded-circle"
                 style="width: 36px; height: 36px; flex-shrink: 0; cursor: pointer; overflow: hidden;"
@@ -12,7 +14,7 @@
                 data-bs-target="#userProfileModal"
                 aria-label="Open profile">
             <?php if(isset($_SESSION['user']->image)) :?>
-            <img src="images/<?= $_SESSION['user']->image ?>" alt="Defalut" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="images/<?= XSS::prevent($_SESSION['user']->image) ?>" alt="Defalut" style="width: 100%; height: 100%; object-fit: cover;">
             <?php else :?>
             <img src="images/default.jpg" alt="Defalut" style="width: 100%; height: 100%; object-fit: cover;">
             <?php endif ?>
@@ -31,12 +33,12 @@
             </div>
 
             <form action="_actions/Users/upload.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $_SESSION['user']->id ?>">
+                <input type="hidden" name="id" value="<?= XSS::prevent($_SESSION['user']->id) ?>">
 
                 <div class="modal-body">
                     <div class="text-center mb-4">
                         <?php if(isset($_SESSION['user']->image)) :?>
-                        <img src="images/<?= $_SESSION['user']->image ?>" alt="Default profile photo" class="rounded-circle border" style="width: 112px; height: 112px; object-fit: cover;">
+                        <img src="images/<?= XSS::prevent($_SESSION['user']->image) ?>" alt="Default profile photo" class="rounded-circle border" style="width: 112px; height: 112px; object-fit: cover;">
                         <?php else :?>
                         <img src="images/default.jpg" alt="Default profile photo" class="rounded-circle border" style="width: 112px; height: 112px; object-fit: cover;">
                         <?php endif ?>
@@ -49,11 +51,11 @@
                     <div class="border rounded-3 p-3 bg-light">
                         <div class="mb-2">
                             <span class="small text-muted d-block">Name</span>
-                            <span class="fw-semibold"><?= $_SESSION['user']->name ?></span>
+                            <span class="fw-semibold"><?= XSS::prevent($_SESSION['user']->name) ?></span>
                         </div>
                         <div>
                             <span class="small text-muted d-block">Email</span>
-                            <span class="fw-semibold"><?= $_SESSION['user']->email ?></span>
+                            <span class="fw-semibold"><?= XSS::prevent($_SESSION['user']->email) ?></span>
                         </div>
                     </div>
                 </div>
