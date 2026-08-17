@@ -31,7 +31,7 @@
                     <li>
                         <a href="#"
                            class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php' ? 'active' : 'text-white' ?>">
-                        Borrowings
+                        Coming Soon
                         </a>
                     </li>
                 </ul>
