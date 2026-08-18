@@ -6,9 +6,15 @@
     use Database\DbConnection;
     use Database\BooksTable;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $booksTable = new BooksTable(new DbConnection());
     $allBooks = $booksTable->getAll();
+
+    //filtering available books
+    $availableBooks = array_filter($allBooks, function ($book) {
+        return $book->status === "Available";
+    });
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +36,15 @@
 
         <main class="flex-grow-1 p-4">
             <div class="mb-4">
-                <h1 class="h3 fw-bold mb-1">Book Available <span class="badge bg-primary"><?= count($allBooks) ?></span></h1>
+                <h1 class="h3 fw-bold mb-1">Books Available <span class="badge bg-primary"><?= count($availableBooks) ?></span></h1>
             </div>
+
+            <?php if (isset($_GET['successBorrowing'])) : ?>
+                <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+                    Borrowed successfully.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif ?>
 
             <div class="row g-4">
                 <?php foreach($allBooks as $book): ?>
@@ -49,9 +62,14 @@
                             <?php endif ?>
 
                             <?php if($book->status === "Available"): ?>
-                            <button type="button" class="btn btn-primary mt-auto">Borrow</button>
+                            <form action="_actions/Borrowings/create-borrowing.php" method="post">
+                                <input type="hidden" name="book_id" value="<?= XSS::prevent($book->id) ?>">
+                                <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
+
+                                <button type="submit" class="btn btn-primary mt-auto w-100">Borrow</button>
+                            </form>
                             <?php else: ?>
-                            <button type="button" class="btn btn-danger cursor-crosshair mt-auto">Borrowed</button>
+                            <button type="button" class="btn btn-secondary cursor-crosshair mt-auto">Unavailable</button>
                             <?php endif ?>
                         </div>
                     </article>

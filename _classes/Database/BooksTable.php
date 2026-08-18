@@ -58,6 +58,20 @@ class BooksTable{
         }
     }
 
+    public function updateStatus($id, $status){
+        try {
+            $sql = "UPDATE books SET status = :status, updated_at = NOW() WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                "status" => $status,
+                "id"  => $id
+            ]);
+            return $stmt->rowCount();
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
+    }
+
     public function getAll(){
         try {
             $sql = "SELECT * FROM books";
