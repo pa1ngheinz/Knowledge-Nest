@@ -8,13 +8,13 @@
     <hr>
     <ul class="nav nav-pills flex-column gap-2">
         <li class="nav-item">
-            <a href="home.php" class="nav-link active d-flex align-items-center gap-2">
+            <a href="home.php" class="nav-link d-flex align-items-center gap-2 <?= basename($_SERVER['PHP_SELF']) === 'home.php'? 'active' : 'text-white' ?>">
                 <i class="fa-solid fa-book-open"></i>
                 Library
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white d-flex align-items-center gap-2">
+            <a href="borrowings.php" class="nav-link text-white d-flex align-items-center gap-2 <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php'? 'active' : 'text-white' ?>">
                 <i class="fa-solid fa-book"></i>
                 My Books
             </a>

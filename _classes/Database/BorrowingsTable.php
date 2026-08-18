@@ -23,7 +23,16 @@
             }
         }
 
-        public function getAll(){
-
+        public function getAll($user_id){
+            try {
+                $sql = "SELECT books.name, books.image, books.author, users.name AS username, borrowings.borrowed_at FROM borrowings JOIN books ON borrowings.book_id = books.id JOIN users ON borrowings.user_id = users.id WHERE borrowings.user_id = :user_id";
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute([
+                    "user_id" => $user_id
+                ]);
+                return $stmt->fetchAll();
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+            }
         }
     }
