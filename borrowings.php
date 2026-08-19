@@ -6,8 +6,8 @@
     use Database\DbConnection;
     use Database\BorrowingsTable;
     use Helpers\Auth;
-    use Helpers\HTTP;
     use Helpers\XSS;
+    use Helpers\CSRF;
 
     $currentUser =Auth::check();
 
@@ -71,10 +71,13 @@
                                 <td><?= XSS::prevent($borrowing->name) ?></td>
                                 <td><img src="images/<?= XSS::prevent($borrowing->image) ?>" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
                                 <td><?= XSS::prevent($borrowing->author) ?></td>
-                                <td><?= XSS::prevent($borrowing->username) ?></td>
+                                <td><?= XSS::prevent($borrowing->user) ?></td>
                                 <td><?= XSS::prevent($borrowing->borrowed_at) ?></td>
                                 <td>
-                                    <form method="post" action="_actions/Books/delete-book.php">
+                                    <form action="_actions/Borrowings/delete-borrowing.php" method="post">
+                                        <input type="hidden" name="id" value="<?= XSS::prevent($borrowing->id) ?>">
+                                        <input type="hidden" name="book_id" value="<?= XSS::prevent($borrowing->book_id) ?>">
+                                        <input type="hidden" name="csrf_token" value="<?= CSRF::csrf_token() ?>">
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to return this book?')">Return Back</button>
                                     </form>
                                 </td>

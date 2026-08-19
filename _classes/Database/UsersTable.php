@@ -13,7 +13,7 @@ class UsersTable
         $this->db = $db->connect();
     }
 
-    public function insert($name, $email, $password, $role)
+    public function insert($name, $email, $password)
     {
         try {
             $sql = "INSERT INTO users (name,email,password,role_id,created_at) VALUES (:name,:email,:password,:role_id,NOW())";
@@ -22,7 +22,7 @@ class UsersTable
                 "name" => $name,
                 "email" => $email,
                 "password" => $password,
-                "role_id" => $role
+                "role_id" => 1
             ]);
             return $this->db->lastInsertId();
         } catch (\Throwable $th) {
