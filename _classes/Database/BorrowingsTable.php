@@ -23,13 +23,23 @@
             }
         }
 
-        public function getAll($user_id){
+        public function getAllByUser($user_id){
             try {
                 $sql = "SELECT borrowings.*, books.name, books.image, books.author, users.name AS user FROM borrowings INNER JOIN books ON borrowings.book_id = books.id INNER JOIN users ON borrowings.user_id = users.id WHERE borrowings.user_id = :user_id";
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute([
                     "user_id" => $user_id
                 ]);
+                return $stmt->fetchAll();
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+            }
+        }
+
+        public function getAll(){
+            try {
+                $sql = "SELECT borrowings.*, books.name, books.image, books.author, users.name AS user FROM borrowings INNER JOIN books ON borrowings.book_id = books.id INNER JOIN users ON borrowings.user_id = users.id";
+                $stmt = $this->db->query($sql);
                 return $stmt->fetchAll();
             } catch (\Throwable $th) {
                 echo $th->getMessage();

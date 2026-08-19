@@ -14,7 +14,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="borrowings.php" class="nav-link text-white d-flex align-items-center gap-2 <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php'? 'active' : 'text-white' ?>">
+            <a href="my-books.php" class="nav-link text-white d-flex align-items-center gap-2 <?= basename($_SERVER['PHP_SELF']) === 'my-books.php'? 'active' : 'text-white' ?>">
                 <i class="fa-solid fa-book"></i>
                 My Books
             </a>

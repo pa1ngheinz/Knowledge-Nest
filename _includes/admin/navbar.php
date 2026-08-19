@@ -29,9 +29,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="borrowings.php"
                            class="nav-link rounded <?= basename($_SERVER['PHP_SELF']) === 'borrowings.php' ? 'active' : 'text-white' ?>">
-                        Coming Soon
+                        Borrowings
                         </a>
                     </li>
                 </ul>
