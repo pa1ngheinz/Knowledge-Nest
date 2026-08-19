@@ -93,7 +93,11 @@
                                 <td><?= XSS::prevent($book->name) ?></td>
                                 <td><img src="images/<?= XSS::prevent($book->image) ?>" alt="Book Cover" class="rounded" style="width:50px; height:65px; object-fit:cover;"></td>
                                 <td><?= XSS::prevent($book->author) ?></td>
+                                <?php if($book->status === "Available"): ?>
                                 <td><span class="badge bg-success"><?= XSS::prevent($book->status) ?></span></td>
+                                <?php else: ?>
+                                <td><span class="badge bg-danger"><?= XSS::prevent($book->status) ?></span></td>
+                                <?php endif ?>
                                 <td><?= XSS::prevent($book->created_at) ?></td>
                                 <td><?= XSS::prevent($book->updated_at) ?></td>
                                 <td class="text-center">
